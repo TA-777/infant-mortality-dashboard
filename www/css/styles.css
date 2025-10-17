@@ -1,0 +1,150 @@
+/* Fullscreen splash container */
+#splash{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  /* Center the white card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background image layer */
+#splash::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("hero.png") center / cover no-repeat;
+  filter: grayscale(30%) brightness(70%); /* dim so card stands out */
+  pointer-events: none;
+}
+
+/* Optional soft overlay on top of image */
+#splash::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  pointer-events: none;
+
+}
+
+/* The white popup card */
+#splash .splash-inner {
+  position: relative;
+  background: rgba(255, 255, 255, 0.55); 
+  border-radius: 12px;
+  padding: 24px 32px;
+  max-width: 600px;
+  width: min(90vw, 600px);
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+}
+
+
+/* Grey title */
+#splash .splash-inner h1{
+  color: #555;                        /* grey */
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Grey button */
+#enterBtn{
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+}
+#enterBtn:hover{
+  background-color: #5a6268 !important;
+  border-color: #545b62 !important;
+}
+
+/* Fade-out animation when button is clicked */
+#splash.fade-out{
+  animation: splashFade .6s ease forwards;
+}
+@keyframes splashFade{
+  to{ opacity: 0; visibility: hidden; }
+}
+
+/* Collapsible sidebar */
+#appwrap.sidebar-collapsed #leftSide {
+  display: none !important;
+}
+
+/* When sidebar is hidden, make the main column take full width */
+#appwrap.sidebar-collapsed .col-sm-8,
+#appwrap.sidebar-collapsed .col-md-8,
+#appwrap.sidebar-collapsed .col-lg-8 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Floating reopen button */
+.sidebar-fab {
+  position: fixed;
+  left: 16px;
+  bottom: 20px;
+  z-index: 1050;
+  border-radius: 999px;
+  padding: 10px 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+}
+
+/* Hide the button while the sidebar is visible (optional) */
+#appwrap:not(.sidebar-collapsed) .sidebar-fab {
+  display: none;
+}
+
+.header-image {
+  background: url("infant.jpg") center center / cover no-repeat;
+  height: 220px;       /* adjust to make it taller/shorter */
+  filter: brightness(90%);  /* optional: darken slightly so text stands out */
+}
+
+/* Full-page background image */
+body {
+  background: url("infant.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Plot “card” surface with a subtle grid in LIGHT mode */
+.plot-surface {
+  background:
+    linear-gradient(0deg, rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px),
+    #ffffff;
+  background-size: 22px 22px, 22px 22px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 14px;
+}
+
+/* Dark-mode variant: grid on a dark surface */
+body.dark .plot-surface {
+  background:
+    linear-gradient(0deg, rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px),
+    #0F172A; /* matches your dark bg */
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+}
+
+/* Keep tab panels & wells transparent so the page bg shows through */
+.nav-tabs,
+.tab-content,
+.well,
+.card,
+.panel,
+.container-fluid,
+.row,
+.col {
+  background-color: transparent !important;
+  border: 0;
+}
+
+
